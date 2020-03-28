@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="https://kevinsherman.github.io/k10n/sitemap.xsl"?>
+<?xml-stylesheet type="text/xsl" href="https://k10n.com/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 <url>
-<loc>https://kevinsherman.github.io/k10n/</loc>
+<loc>https://k10n.com/</loc>
 </url>
 <url>
-<loc>https://kevinsherman.github.io/k10n/test-2.html</loc>
+<loc>https://k10n.com/test-2.html</loc>
 <lastmod>2020-03-28T11:45:39-04:00</lastmod>
 </url>
 <url>
-<loc>https://kevinsherman.github.io/k10n/test-3.html</loc>
+<loc>https://k10n.com/test-3.html</loc>
 <lastmod>2020-03-28T12:00:06-04:00</lastmod>
 </url>
 <url>
-<loc>https://kevinsherman.github.io/k10n/test.html</loc>
+<loc>https://k10n.com/test-4.html</loc>
+<lastmod>2020-03-28T12:25:59-04:00</lastmod>
+</url>
+<url>
+<loc>https://k10n.com/test.html</loc>
 <lastmod>2020-03-28T11:25:30-04:00</lastmod>
 </url>
 </urlset>
