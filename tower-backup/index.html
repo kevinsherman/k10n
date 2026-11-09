@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tower Kopia Backup | k10n</title>
+  <meta name="description" content="A private application using Kopia and Rclone to maintain encrypted personal backups in the owner’s Google Drive storage." />
+  <link rel="canonical" href="https://k10n.com/tower-backup/" />
+  <link rel="stylesheet" href="/tower-backup/styles.css" />
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">Private backup application</p>
+    <h1>Tower Kopia Backup</h1>
+    <p class="lead">A privately operated backup application that uses Kopia and Rclone to maintain encrypted backups of selected personal files in the owner’s Google Drive storage.</p>
+    <a class="policy-link" href="/tower-backup/privacy/">Read the privacy policy</a>
+  </header>
+  <section aria-labelledby="backups">
+    <h2 id="backups">How backups work</h2>
+    <p>Kopia encrypts backup contents locally before upload. Incremental snapshots record changes over time, while content deduplication avoids storing repeated content unnecessarily.</p>
+  </section>
+  <section aria-labelledby="access">
+    <h2 id="access">Google Drive access</h2>
+    <p>Google OAuth authorizes Rclone to access the owner’s Google Drive account within the granted scope. This access supports creating, maintaining, verifying, and restoring encrypted personal backups.</p>
+  </section>
+  <section aria-labelledby="personal">
+    <h2 id="personal">For personal use only</h2>
+    <p>This application is intended for the owner’s personal use. It is not offered as a public service, and this website does not provide access to the backup application.</p>
+  </section>
+  <footer><a href="/tower-backup/privacy/">Privacy policy</a></footer>
+</main>
+</body>
+</html>
