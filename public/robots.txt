@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://k10n.com/sitemap.xml

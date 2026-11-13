@@ -1,0 +1,41 @@
+---
+import Base from "../../layouts/Base.astro";
+import { notes } from "../../lib/notes";
+const entries = await notes();
+---
+
+<Base
+  title="Notes"
+  description="Writing and occasional notes from Kevin Sherman."
+>
+  <div class="prose">
+    <p class="eyebrow">Writing, at its own pace</p>
+    <h1>Notes.</h1>
+    <p class="lead">Things worth explaining, wondering about, or keeping.</p>
+    <ul class="note-list">
+      {entries.map((n) => (
+        <li>
+          <time datetime={n.data.date.toISOString()}>
+            {n.data.date.toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              timeZone: "UTC",
+            })}
+          </time>
+          {n.data.draft && <span class="label"> · Draft for review</span>}
+          <h2>
+            <a href={`/notes/${n.id}/`}>{n.data.title}</a>
+          </h2>
+          <p>{n.data.description}</p>
+        </li>
+      ))}
+    </ul>
+    {!entries.length && (
+      <p>
+        No published notes yet. New writing will appear here and in the{" "}
+        <a href="/rss.xml">RSS feed</a>.
+      </p>
+    )}
+  </div>
+</Base>

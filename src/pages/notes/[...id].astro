@@ -1,0 +1,30 @@
+---
+import { render } from "astro:content";
+import { notes } from "../../lib/notes";
+import Base from "../../layouts/Base.astro";
+export async function getStaticPaths() {
+  return (await notes()).map((note) => ({
+    params: { id: note.id },
+    props: { note },
+  }));
+}
+const { note } = Astro.props;
+const { Content } = await render(note);
+---
+
+<Base title={note.data.title} description={note.data.description}>
+  <article class="prose">
+    <p class="eyebrow">{note.data.tags.join(" / ")}</p>
+    <h1>{note.data.title}</h1>
+    {note.data.draft && (
+      <aside class="draft">
+        Draft for Kevin’s review. Proposed wording, not a published personal
+        account.
+      </aside>
+    )}
+    <Content />
+    <p>
+      <a href="/notes/">← All notes</a>
+    </p>
+  </article>
+</Base>

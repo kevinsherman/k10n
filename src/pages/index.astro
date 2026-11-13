@@ -1,0 +1,56 @@
+---
+import Base from "../layouts/Base.astro";
+import { notes } from "../lib/notes";
+const entries = (await notes()).slice(0, 3);
+---
+
+<Base
+  title="Home"
+  description="Kevin Sherman's corner of the internet. Notes on making things, understanding them, and life in between."
+>
+  <section class="intro">
+    <p class="eyebrow">Kevin Sherman / A personal website</p>
+    <h1>Hi, I’m Kevin.</h1>
+    <p class="lead">This is my little corner of the internet.</p>
+    <p class="small">
+      A place for things I’m making, things I’m trying to understand, and the
+      occasional story worth keeping.
+    </p>
+  </section>
+  <div class="home-grid">
+    <section>
+      <h2>{entries.length ? "A few notes" : "Room to write"}</h2>
+      {entries.length ? (
+        <ul class="note-list">
+          {entries.map((n) => (
+            <li>
+              <span class="label">
+                {n.data.draft ? "Draft for review" : n.data.tags.join(" / ")}
+              </span>
+              <h3>
+                <a href={`/notes/${n.id}/`}>{n.data.title}</a>
+              </h3>
+              <p>{n.data.description}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>
+          Technical notes, everyday observations, and longer stories can all
+          find a home here. No particular schedule.
+        </p>
+      )}
+    </section>
+    <aside class="margin-note">
+      <p class="eyebrow">About the name</p>
+      <p>
+        <strong>K + 10 letters + N.</strong>
+        <br />
+        Kevin Sherman, shortened to fit on the door.
+      </p>
+      <p>
+        <a href="/about/">A little more about me</a>
+      </p>
+    </aside>
+  </div>
+</Base>

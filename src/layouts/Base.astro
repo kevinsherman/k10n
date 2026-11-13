@@ -1,0 +1,83 @@
+---
+import "../styles/site.css";
+import { review, notes } from "../lib/notes";
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const hasNotes = (await notes()).length > 0;
+const path = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title === 'Home' ? 'k10n — Kevin Sherman' : `${title} · k10n`}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(path, Astro.site)} />
+    <meta
+      property="og:title"
+      content={title === "Home" ? "k10n — Kevin Sherman" : `${title} · k10n`}
+    />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={new URL(path, Astro.site)} />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/img/favicon.ico" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="k10n — Notes"
+      href="/rss.xml"
+    />
+    {review && <meta name="robots" content="noindex, nofollow" />}
+  </head>
+  <body>
+    <a class="skip" href="#main">
+      Skip to content
+    </a>
+    {review && (
+      <aside class="review" aria-label="Design review notice">
+        Design preview · proposed copy for Kevin’s review · not the live site
+      </aside>
+    )}
+    <div class="shell">
+      <header>
+        <a class="wordmark" href="/" aria-label="k10n home">
+          k<span>10</span>n<span class="dot">.</span>
+        </a>
+        <nav aria-label="Main navigation">
+          <a href="/" aria-current={path === "/" ? "page" : undefined}>
+            Home
+          </a>
+          {hasNotes && (
+            <a
+              href="/notes/"
+              aria-current={path.startsWith("/notes/") ? "page" : undefined}
+            >
+              Notes
+            </a>
+          )}
+          <a
+            href="/about/"
+            aria-current={path === "/about/" ? "page" : undefined}
+          >
+            About
+          </a>
+        </nav>
+      </header>
+      <main id="main" tabindex="-1">
+        <slot />
+      </main>
+      <footer>
+        <span>
+          Kevin Sherman <span aria-hidden="true">/</span> k10n
+        </span>
+        <a href="/rss.xml">RSS feed</a>
+      </footer>
+    </div>
+  </body>
+</html>
