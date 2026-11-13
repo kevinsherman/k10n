@@ -1,0 +1,49 @@
+name: Validate k10n personal site
+
+on:
+  push:
+    branches:
+      - feat/personal-site
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: k10n-personal-site-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout full history for preserved asset checks
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --include=dev
+
+      - name: Validate production build and legacy OAuth assets
+        env:
+          REVIEW_DRAFTS: 'false'
+        run: npm run validate
+
+      - name: Upload reviewable production artifact (no deployment)
+        uses: actions/upload-artifact@v4
+        with:
+          name: k10n-production-dist
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
